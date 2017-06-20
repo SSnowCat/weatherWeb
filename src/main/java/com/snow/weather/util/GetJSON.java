@@ -15,7 +15,7 @@ public final class GetJSON {
     private static final String method="POST";
     private static final String appcode="44325ff075574eeba7b44bd5180d2c1f";
 
-    public String getLifeJson(String lat,String lon){
+    public static String getLifeJson(String lat,String lon){
         String path = "/whapi/json/aliweather/index";
         String tempLifeJson = new String();
         Map<String, String> headers = new HashMap<String, String>();
@@ -52,7 +52,7 @@ public final class GetJSON {
         return tempLifeJson;
     }
 
-    public String getWarningJson(String lat,String lon){
+    public static String getWarningJson(String lat,String lon){
         String path = "/whapi/json/aliweather/alert";
         Map<String, String> headers = new HashMap<String, String>();
         String tempWarningJson = new String();
@@ -87,7 +87,7 @@ public final class GetJSON {
         }
         return tempWarningJson;
     }
-    public String getTempJson(String lat,String lon){
+    public static String getTempJson(String lat,String lon){
         String path = "/whapi/json/aliweather/forecast24hours";
         String tempTempJson = new String();
         Map<String, String> headers = new HashMap<String, String>();
@@ -123,7 +123,7 @@ public final class GetJSON {
         return  tempTempJson;
 
     }
-    public String  getWeatherJson(String lat,String lon){
+    public static String  getWeatherJson(String lat,String lon){
         String path = "/whapi/json/aliweather/forecast15days";
         String tempWeatherJson = new String();
         Map<String, String> headers = new HashMap<String, String>();
