@@ -7,6 +7,7 @@ import com.snow.weather.util.GetJSON;
 import com.snow.weather.util.GetLatAndLngByBaidu;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -15,7 +16,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2017/6/20.
  */
-
+@Repository
 public class DataDaoImpl implements DataDao{
 
     @Autowired
@@ -27,12 +28,9 @@ public class DataDaoImpl implements DataDao{
     private GetLatAndLngByBaidu getLatAndLngByBaidu;
 
     public String[] getl(String cityName){
-        String[] o = null;
-        try {
-            o = getLatAndLngByBaidu.getCoordinate(cityName);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        getLatAndLngByBaidu = new GetLatAndLngByBaidu();
+        String[] o = getLatAndLngByBaidu.getCoordinate(cityName);
+
         return o;
     }
 

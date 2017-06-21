@@ -1,6 +1,7 @@
 package com.snow.weather.util;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.snow.weather.domain.*;
 
@@ -34,16 +35,17 @@ public final class AnalyseJSON {
 
     public static List<Life> getLife(String lifeJson){
         List list = new ArrayList();
-        JSONObject jsonObject = (JSONObject) JSONObject.parseObject(lifeJson)
+        JSONObject jsonObject = JSONObject.parseObject(lifeJson)
                 .getJSONObject("data")
-                .getJSONObject("liveIndex")
-                .getJSONObject(getFormatDate());
+                .getJSONObject("liveIndex");
+        JSONArray jsonArray = jsonObject.getJSONArray(getFormatDate());
+
         for(int i = 0; i < 8; i++){
             Life life = new Life();
             life.setDay(new Date());
-            life.setDesc((String) jsonObject.getJSONObject(String.valueOf(i)).get("desc"));
-            life.setName((String) jsonObject.getJSONObject(String.valueOf(i)).get("name"));
-            life.setStatus((String) jsonObject.getJSONObject((String.valueOf(i))).get("status"));
+            life.setDesc(jsonArray.getJSONObject(i).getString("desc"));
+            life.setDesc(jsonArray.getJSONObject(i).getString("name"));
+            life.setStatus(jsonArray.getJSONObject(i).getString("status"));
             life.setCity(getCity(lifeJson));
             list.add(life);
         }
