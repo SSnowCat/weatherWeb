@@ -16,12 +16,12 @@ import java.util.List;
  */
 public final class AnalyseJSON {
 
-    public String getFormatDate(){
+    public static String getFormatDate(){
         String formatDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         return formatDate;
     }
 
-    public City getCity(String json){
+    public static City getCity(String json){
         JSONObject jsonObject = (JSONObject) JSONObject.parseObject(json)
                 .getJSONObject("data")
                 .getJSONObject("city");
@@ -32,7 +32,7 @@ public final class AnalyseJSON {
         return city;
     }
 
-    public List<Life> getLife(String lifeJson){
+    public static List<Life> getLife(String lifeJson){
         List list = new ArrayList();
         JSONObject jsonObject = (JSONObject) JSONObject.parseObject(lifeJson)
                 .getJSONObject("data")
@@ -50,12 +50,12 @@ public final class AnalyseJSON {
         return list;
     }
 
-    public Warning getWarning(String warningJson){
+    public static Warning getWarning(String warningJson){
 
         return null;
     }
 
-    public List<Temp> getTemp(String tempJson){
+    public static List<Temp> getTemp(String tempJson){
         List list = new ArrayList();
         JSONObject jsonObject = (JSONObject) JSONObject.parseObject(tempJson)
                 .getJSONObject("data")
@@ -71,7 +71,7 @@ public final class AnalyseJSON {
         return list;
     }
 
-    public List<Weather> getWeather(String weatherJson) throws ParseException{
+    public static List<Weather> getWeather(String weatherJson) throws ParseException{
         List list = new ArrayList();
         JSONObject jsonObject = (JSONObject) JSONObject.parseObject(weatherJson)
                 .getJSONObject("data")
