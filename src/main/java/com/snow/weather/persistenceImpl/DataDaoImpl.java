@@ -23,8 +23,6 @@ public class DataDaoImpl implements DataDao{
     private SessionFactory sessionFactory;
 
     //private String hotCityName = "成都";
-    private AnalyseJSON analyseJSON;
-    private GetJSON getJSON;
     private GetLatAndLngByBaidu getLatAndLngByBaidu;
 
     public String[] getl(String cityName){
@@ -42,7 +40,8 @@ public class DataDaoImpl implements DataDao{
     @Override
     public void saveLife(String cityName) {
         List<Life> list;
-        list = analyseJSON.getLife(getJSON.getLifeJson(getl(cityName)[0],getl(cityName)[1]));
+        saveCity(AnalyseJSON.getCity(GetJSON.getLifeJson(getl(cityName)[0],getl(cityName)[1])));
+        list = AnalyseJSON.getLife(GetJSON.getLifeJson(getl(cityName)[0],getl(cityName)[1]));
         for(Life lifelist:list){
             sessionFactory.getCurrentSession().save(lifelist);
         }
@@ -51,7 +50,7 @@ public class DataDaoImpl implements DataDao{
     @Override
     public void saveTemp(String cityName) {
         List<Temp> list;
-        list = analyseJSON.getTemp(getJSON.getTempJson(getl(cityName)[0],getl(cityName)[1]));
+        list = AnalyseJSON.getTemp(GetJSON.getTempJson(getl(cityName)[0],getl(cityName)[1]));
         for(Temp templist:list){
             sessionFactory.getCurrentSession().save(templist);
         }
@@ -61,7 +60,7 @@ public class DataDaoImpl implements DataDao{
     public void saveWeather(String cityName){
         List<Weather> list = null;
         try {
-            list = analyseJSON.getWeather(getJSON.getWeatherJson(getl(cityName)[0],getl(cityName)[1]));
+            list = AnalyseJSON.getWeather(GetJSON.getWeatherJson(getl(cityName)[0],getl(cityName)[1]));
         } catch (ParseException e) {
             e.printStackTrace();
         }
