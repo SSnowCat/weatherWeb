@@ -7,13 +7,13 @@ import com.snow.weather.domain.*;
  */
 public interface DataDao {
 
-    void saveCity();
+    void saveCity(City city);
 
-    void saveLife();
+    void saveLife(String cityName);
 
-    void saveTemp();
+    void saveTemp(String cityName);
 
-    void saveWeather();
+    void saveWeather(String cityName);
 
-    void saveWarning();
+    void saveWarning(String cityName);
 }
