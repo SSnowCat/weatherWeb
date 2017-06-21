@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface UserDao {
     City getCity(String cityName);
-    List<Life> getLife(String cityName);
-    List<Temp> getTemp(String cityName);
-    List<Weather> getWeather(String cityName);
+    List<Life> getLife(City city);
+    List<Temp> getTemp(City city);
+    List<Weather> getWeather(City city);
 }
