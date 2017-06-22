@@ -1,11 +1,8 @@
 function getCitys(e) {
     $.ajax({
-        //等待API开发
-        //url: "/api/citysearch/" + e,
-        url: '',
+        url: 'citySearch/' + e,
         async: !0,
         success: function (e) {
-            var e = JSON.parse(e);
             "0" == e.rc.c && void 0 != e.city_list && setSearchCitys(e.city_list)
         },
         error: function (e) {
@@ -17,11 +14,12 @@ function getCitys(e) {
 function setSearchCitys(e) {
     for (var t = new Array, a = 0; a < e.length; a++)
         if ("中国" == e[a].counname) {
-            var i = "/weather/" + e[a].counname + "/" + e[a].pname + "/" + e[a].name,
+            //i -> 不知道干嘛
+            var i = "weather/" + e[a].counname + "/" + e[a].pname + "/" + e[a].name,
                 i = i.toLowerCase(),
                 i = i.replace(/\s/g, "_"),
-                n = '<li><a href="/api/redirect/' + e[a].cityId + '">' + e[a].name + "," + e[a].pname + "," + e[a].counname + "</a></li>";
-            t.push(n)
+                n = '<li><a href="weather/' + e[a].name + '">' + e[a].name + "," + e[a].pname + "," + e[a].counname + "</a></li>";
+            t.push(n);
         }
     $(".search_city ul").html(t)
 }
