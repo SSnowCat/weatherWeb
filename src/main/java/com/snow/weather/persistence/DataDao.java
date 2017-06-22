@@ -7,7 +7,7 @@ import com.snow.weather.domain.*;
  */
 public interface DataDao {
 
-    void saveCity(City city);
+    void saveCity(String cityName);
 
     void saveLife(String cityName);
 

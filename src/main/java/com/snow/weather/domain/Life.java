@@ -15,6 +15,7 @@ public class Life implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Date day;
+    @Column(name = "descc")
     private String desc;
     private String name;
     private String status;

@@ -1,11 +1,12 @@
 package com.snow.weather.util;
-import java.io.BufferedReader;
+
+import com.alibaba.fastjson.JSONObject;
+import org.apache.http.HttpResponse;
+import org.apache.http.util.EntityUtils;
+
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 获取经纬度
@@ -18,63 +19,48 @@ import java.net.URLConnection;
 public class GetLatAndLngByBaidu {
 
     /**
-     * @param addr
+     * @param address
      * 查询的地址
      * @return
      * @throws IOException
      */
-    public String[] getCoordinate(String addr) throws IOException {
-        String lng = null;//经度
-        String lat = null;//纬度
-        String address = null;
+    public String[] getCoordinate(String address) {
+        String host = "http://jisujwddz.market.alicloudapi.com";
+        String path = "/geoconvert/addr2coord";
+        String method = "GET";
+        String appcode = "44325ff075574eeba7b44bd5180d2c1f";
+        Map<String, String> headers = new HashMap<String, String>();
+        //最后在header中的格式(中间是英文空格)为Authorization:APPCODE 83359fd73fe94948385f570e3c139105
+        headers.put("Authorization", "APPCODE " + appcode);
+        Map<String, String> querys = new HashMap<String, String>();
+        querys.put("address", address);
+        querys.put("type", "google");
+        String lat = null;
+        String lng = null;
+
         try {
-            address = java.net.URLEncoder.encode(addr, "UTF-8");
-        } catch (UnsupportedEncodingException e1) {
-            e1.printStackTrace();
-        }
-        String key = "f247cdb592eb43ebac6ccd27f796e2d2";
-        String url = String.format("http://api.map.baidu.com/geocoder?address=%s&output=json&key=%s", address, key);
-        URL myURL = null;
-        URLConnection httpsConn = null;
-        try {
-            myURL = new URL(url);
-        } catch (MalformedURLException e) {
+            /**
+             * 重要提示如下:
+             * HttpUtils请从
+             * https://github.com/aliyun/api-gateway-demo-sign-java/blob/master/src/main/java/com/aliyun/api/gateway/demo/util/HttpUtils.java
+             * 下载
+             *
+             * 相应的依赖请参照
+             * https://github.com/aliyun/api-gateway-demo-sign-java/blob/master/pom.xml
+             */
+            HttpResponse response = HttpUtils.doGet(host, path, method, headers, querys);
+            //System.out.println(response.toString());
+            //获取response的body
+            //System.out.println(EntityUtils.toString(response.getEntity()));
+            String json = EntityUtils.toString(response.getEntity());
+            lat = (String)JSONObject.parseObject(json)
+                    .getJSONObject("result").get("lat");
+            lng = (String)JSONObject.parseObject(json)
+                    .getJSONObject("result").get("lng");
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        InputStreamReader insr = null;
-        BufferedReader br = null;
-        try {
-            httpsConn = (URLConnection) myURL.openConnection();// 不使用代理
-            if (httpsConn != null) {
-                insr = new InputStreamReader(httpsConn.getInputStream(), "UTF-8");
-                br = new BufferedReader(insr);
-                String data = null;
-                int count = 1;
-                while ((data = br.readLine()) != null) {
-                    if (count == 5) {
-                        if (data.length() == 5) {
-                            break;
-                        }
-                        lng = (String) data.subSequence(data.indexOf(":") + 1, data.indexOf(","));//经度
-                        count++;
-                    } else if (count == 6) {
-                        lat = data.substring(data.indexOf(":") + 1);//纬度
-                        count++;
-                    } else {
-                        count++;
-                    }
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (insr != null) {
-                insr.close();
-            }
-            if (br != null) {
-                br.close();
-            }
-        }
-        return new String[]{lng, lat};
+        return new String[]{lat,lng};
+
     }
 }
