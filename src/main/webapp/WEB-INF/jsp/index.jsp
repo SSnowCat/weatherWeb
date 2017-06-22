@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -26,21 +27,21 @@
                     <i></i>
                 </li>
                 <li>
-                    <a href="javascript:;">中国</a>
+                    <a href="javascript:;">${city.counname}</a>
                     <i></i>
                 </li>
                 <li>
-                    <a href="javascript:;">四川省</a>
+                    <a href="javascript:;">${city.pname}</a>
                     <i></i>
                 </li>
-                <li>新都区</li>
+                <li>${city.name}</li>
             </ul>
         </div>
     </div>
     <div id="search">
         <div class="search">
             <div class="search_default">
-                <em>新都区， 四川省， 中国</em>
+                <em>${city.counname}， ${city.pname}， ${city.name}</em>
                 <strong id="locate"></strong>
                 <b><!--icon--></b>
                 <input type="text" placeholder="输入你要查找的城市">
@@ -59,26 +60,26 @@
                 <li>
                     <a href="javascript:;">
 								<span class="level level_2">
-                            <img src="img/2.png" alt="78 良">
+                            <img src="img/${details.aqiIcon}.png" alt="${details.aqi}">
                         </span>
-                        <em>78 良</em>
+                        <em>${details.aqi}</em>
                     </a>
                 </li>
             </ul>
         </div>
         <div class="wea_weather clearfix">
-            <em>25</em>
-            <span><img src="img/w2.png" alt="阴"></span>
-            <b>阴</b>
-            <strong class="info_uptime">今天10:00更新</strong>
+            <em>${details.temp}</em>
+            <span><img src="img/w${details.conIcon}.png" alt="${details.condition}"></span>
+            <b>${details.condition}</b>
+            <strong class="info_uptime">${details.updatetime}</strong>
         </div>
         <div class="wea_about clearfix">
-            <span>湿度 76%</span>
-            <em>南风2级</em>
-            <b>尾号限行2和7</b></div>
+            <span>湿度 ${details.humidity}%</span>
+            <em>${details.windDir}&nbsp;${details.windLevel}级</em>
+            <b>${details.carLimit}</b></div>
         <div class="wea_tips clearfix">
             <span>今日天气提示</span>
-            <em>略微偏热，注意衣物变化。</em>
+            <em>${details.tips}</em>
         </div>
     </div>
 </div>
@@ -95,7 +96,8 @@
             </div>
             <ul class="days clearfix">
                 <li>
-                    <a href="javascript:;">今天</a>
+                    <%--<a href="javascript:;">今天</a>--%>
+                    <em>今天</em>
                 </li>
                 <li>
 							<span>
@@ -114,7 +116,8 @@
             </ul>
             <ul class="days clearfix">
                 <li>
-                    <a href="javascript:;">明天</a>
+                    <%--<a href="javascript:;">明天</a>--%>
+                    <em>明天</em>
                 </li>
                 <li>
 							<span>
@@ -133,7 +136,8 @@
             </ul>
             <ul class="days clearfix">
                 <li>
-                    <a href="javascript:;">后天</a>
+                    <%--<a href="javascript:;">后天</a>--%>
+                    <em>后天</em>
                 </li>
                 <li>
 							<span>
@@ -330,7 +334,5 @@
         </div>
     </div>
 </div>
-
 </body>
-
 </html>
