@@ -70,4 +70,7 @@ public class Life implements Serializable{
     public void setCity(City city) {
         this.city = city;
     }
+
+
+    public Life(){}
 }

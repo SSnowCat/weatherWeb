@@ -16,4 +16,6 @@ public interface DataDao {
     void saveWeather(String cityName);
 
     void saveWarning(String cityName);
+
+
 }

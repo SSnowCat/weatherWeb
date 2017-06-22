@@ -31,6 +31,7 @@ public class DataDaoImpl implements DataDao{
         return o;
     }
 
+
     @Override
     public void saveCity(String cityName) {
         sessionFactory.getCurrentSession().save(AnalyseJSON.getCity(GetJSON.getLifeJson(getl(cityName)[0],getl(cityName)[1])));
