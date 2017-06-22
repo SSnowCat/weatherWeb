@@ -23,24 +23,25 @@ public class DataDaoImpl implements DataDao{
     private SessionFactory sessionFactory;
 
     //private String hotCityName = "成都";
-    private GetLatAndLngByBaidu getLatAndLngByBaidu;
+    private GetLatAndLngByBaidu getLatAndLngByBaidu = new GetLatAndLngByBaidu();
 
     public String[] getl(String cityName){
-        getLatAndLngByBaidu = new GetLatAndLngByBaidu();
-        String[] o = getLatAndLngByBaidu.getCoordinate(cityName);
-
+        String[] o = null;
+        o = getLatAndLngByBaidu.getCoordinate(cityName);
         return o;
     }
 
+
     @Override
-    public void saveCity(City city) {
-        sessionFactory.getCurrentSession().save(city);
+    public void saveCity(String cityName) {
+        sessionFactory.getCurrentSession().save(AnalyseJSON.getCity(GetJSON.getLifeJson(getl(cityName)[0],getl(cityName)[1])));
+
     }
 
     @Override
     public void saveLife(String cityName) {
         List<Life> list;
-        saveCity(AnalyseJSON.getCity(GetJSON.getLifeJson(getl(cityName)[0],getl(cityName)[1])));
+        //saveCity(AnalyseJSON.getCity(GetJSON.getLifeJson(getl(cityName)[0],getl(cityName)[1])));
         list = AnalyseJSON.getLife(GetJSON.getLifeJson(getl(cityName)[0],getl(cityName)[1]));
         for(Life lifelist:list){
             sessionFactory.getCurrentSession().save(lifelist);

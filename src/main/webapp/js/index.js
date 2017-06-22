@@ -11,6 +11,7 @@ function getCitys(e) {
     })
 }
 
+
 function setSearchCitys(e) {
     for (var t = new Array, a = 0; a < e.length; a++)
         if ("中国" == e[a].counname) {
@@ -19,6 +20,8 @@ function setSearchCitys(e) {
         }
     $(".search_city ul").html(t)
 }
+
+
 
 function getPosition() {
     $("#locate").css({
