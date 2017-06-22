@@ -21,19 +21,34 @@ public class MainController {
     @GetMapping(value = "/getChartData",produces = "application/json;charset=utf-8")
     @ResponseBody
     public String getChartData(){
-        String data = "[{\"Ftemp\":26,\"Fpredict_hour\":12,\"wind_level\":2},{\"Ftemp\":27,\"Fpredict_hour\":13,\"wind_level\":2},{\"Ftemp\":26,\"Fpredict_hour\":14,\"wind_level\":2},{\"Ftemp\":27,\"Fpredict_hour\":15,\"wind_level\":2}]";
+        String data = "[{\"Ftemp\":26,\"Fpredict_hour\":12,\"wind_level\":2},{\"Ftemp\":27,\"Fpredict_hour\":13,\"wind_level\":2},{\"Ftemp\":26,\"Fpredict_hour\":23,\"wind_level\":2},{\"Ftemp\":27,\"Fpredict_hour\":0,\"wind_level\":2}]";
         return data;
     }
 
     @GetMapping(value = "/citySearch/{word}",produces = "application/json;charset=utf-8")
     @ResponseBody
     public String getCitySearch(@PathVariable String word){
-        String data = "{\"city_list\":[{\"cityId\":2635,\"city_lable\":[],\"counname\":\"中国\",\"id\":53,\"localCounname\":\"中国\",\"localName\":\"成都市\",\"localPname\":\"四川省\",\"name\":\"成都市\",\"pname\":\"四川省\"}],\"rc\":{\"c\":0}}";
+        String data = "[{\"counname\":\"中国\",\"name\":\"临汾市\",\"pname\":\"山西省\"},{\"counname\":\"中国\",\"name\":\"乐山市\",\"pname\":\"四川省\"},{\"counname\":\"中国\",\"name\":\"兰州市\",\"pname\":\"甘肃省\"},{\"counname\":\"中国\",\"name\":\"娄底市\",\"pname\":\"湖南省\"},{\"counname\":\"中国\",\"name\":\"廊坊市\",\"pname\":\"河北省\"}]";
         return data;
     }
 
-    @GetMapping(value = "/weather/{name}")
-    public String getWeather(@PathVariable String name,HttpSession session){
+    @GetMapping("/weather/{name}")
+    public String getWeather(@PathVariable String name, HttpSession session){
         return "redirect: /index";
     }
+
+    @GetMapping(value = "/geolocate/{lon}/{lat}",produces = "text/html;charset=utf-8")
+    @ResponseBody
+    public String geolocate(@PathVariable String lon,@PathVariable String lat){
+        String data = "/weather/成都";
+        return data;
+    }
+
+    @GetMapping(value = "/iplocate",produces = "text/html;charset=utf-8")
+    @ResponseBody
+    public String iplocate(){
+        String data = "/weather/北京";
+        return data;
+    }
+
 }

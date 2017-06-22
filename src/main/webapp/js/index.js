@@ -3,7 +3,7 @@ function getCitys(e) {
         url: 'citySearch/' + e,
         async: !0,
         success: function (e) {
-            "0" == e.rc.c && void 0 != e.city_list && setSearchCitys(e.city_list)
+            void 0 != e && setSearchCitys(e)
         },
         error: function (e) {
             console.log(e)
@@ -14,11 +14,7 @@ function getCitys(e) {
 function setSearchCitys(e) {
     for (var t = new Array, a = 0; a < e.length; a++)
         if ("中国" == e[a].counname) {
-            //i -> 不知道干嘛
-            var i = "weather/" + e[a].counname + "/" + e[a].pname + "/" + e[a].name,
-                i = i.toLowerCase(),
-                i = i.replace(/\s/g, "_"),
-                n = '<li><a href="weather/' + e[a].name + '">' + e[a].name + "," + e[a].pname + "," + e[a].counname + "</a></li>";
+            var n = '<li><a href="weather/' + e[a].name + '">' + e[a].name + "," + e[a].pname + "," + e[a].counname + "</a></li>";
             t.push(n);
         }
     $(".search_city ul").html(t)
@@ -27,11 +23,10 @@ function setSearchCitys(e) {
 function getPosition() {
     $("#locate").css({
         background: "url(icon/i_loading.png) no-repeat right center"
-    }), navigator.geolocation ? navigator.geolocation.getCurrentPosition(showCity, function (e) {
+    });
+    navigator.geolocation ? navigator.geolocation.getCurrentPosition(showCity, function (e) {
         $.ajax({
-            //等待API开发
-            //url: "/api/iplocate",
-            url: '',
+            url: 'iplocate',
             data: {},
             success: function (e) {
                 console.log(e), $("#locate").css({
@@ -41,7 +36,7 @@ function getPosition() {
             error: function (e) {
                 console.log(e)
             }
-        })
+        });
     }, {
         timeout: 3e3
     }) : console.log("navigator not work")
@@ -88,10 +83,10 @@ var showCity = function (e) {
     var t = e.coords.longitude,
         a = e.coords.latitude;
     return void 0 != t && void $.ajax({
-            //等待API开发
-            url: "/api/geolocate/" + t + "/" + a,
+            url: "geolocate/" + t + "/" + a,
             data: {},
             success: function (e) {
+                alert(e);
                 $("#locate").css({
                     background: "url(icon/i_locate.png) no-repeat right center"
                 }), 0 != e && (location = e)
@@ -101,4 +96,3 @@ var showCity = function (e) {
             }
         })
 };
-//# sourceMappingURL=index.js.map
