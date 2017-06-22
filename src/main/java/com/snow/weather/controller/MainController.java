@@ -1,5 +1,7 @@
 package com.snow.weather.controller;
 
+import com.snow.weather.vo.City;
+import com.snow.weather.vo.WeatherDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +16,8 @@ import javax.servlet.http.HttpSession;
 public class MainController {
 
     @GetMapping("/index")
-    public String toIndex(){
+    public String toIndex(HttpSession session){
+        init(session);
         return "index";
     }
 
@@ -34,6 +37,7 @@ public class MainController {
 
     @GetMapping("/weather/{name}")
     public String getWeather(@PathVariable String name, HttpSession session){
+        init(session);
         return "redirect: /index";
     }
 
@@ -49,6 +53,27 @@ public class MainController {
     public String iplocate(){
         String data = "/weather/北京";
         return data;
+    }
+
+    private void init(HttpSession session){
+        City city = new City();
+        city.setCounname("中国");
+        city.setPname("四川省");
+        city.setName("西昌市");
+        session.setAttribute("city",city);
+        WeatherDetails details = new WeatherDetails();
+        details.setCondition("雪");
+        details.setHumidity(56);
+        details.setConIcon("2");
+        details.setAqi("23 优");
+        details.setAqiIcon("2");
+        details.setTemp(27);
+        details.setTips("冷热适宜，感觉很舒适。");
+        details.setUpdatetime("今日15：00更新");
+        details.setWindDir("西南风");
+        details.setWindLevel(4);
+        details.setCarLimit("尾号限行 4和6");
+        session.setAttribute("details",details);
     }
 
 }
