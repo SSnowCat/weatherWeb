@@ -1,7 +1,7 @@
 package com.snow.weather.controller;
 
-import com.snow.weather.vo.City;
-import com.snow.weather.vo.WeatherDetails;
+import com.snow.weather.vo.CityVO;
+import com.snow.weather.vo.WeatherDetailsVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -56,16 +56,17 @@ public class MainController {
     }
 
     private void init(HttpSession session){
-        City city = new City();
-        city.setCounname("中国");
-        city.setPname("四川省");
-        city.setName("西昌市");
-        session.setAttribute("city",city);
-        WeatherDetails details = new WeatherDetails();
+        CityVO cityVO = new CityVO();
+        cityVO.setCounname("中国");
+        cityVO.setPname("四川省");
+        cityVO.setName("西昌市");
+        session.setAttribute("city", cityVO);
+        WeatherDetailsVO details = new WeatherDetailsVO();
         details.setCondition("雪");
         details.setHumidity(56);
         details.setConIcon("2");
-        details.setAqi("23 优");
+        details.setAqiLevel(1);
+        details.setAqiStr("23 优");
         details.setAqiIcon("2");
         details.setTemp(27);
         details.setTips("冷热适宜，感觉很舒适。");

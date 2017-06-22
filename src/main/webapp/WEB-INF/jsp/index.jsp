@@ -41,7 +41,7 @@
     <div id="search">
         <div class="search">
             <div class="search_default">
-                <em>${city.counname}， ${city.pname}， ${city.name}</em>
+                <em>${city.name}， ${city.pname}， ${city.counname}</em>
                 <strong id="locate"></strong>
                 <b><!--icon--></b>
                 <input type="text" placeholder="输入你要查找的城市">
@@ -59,10 +59,10 @@
             <ul>
                 <li>
                     <a href="javascript:;">
-								<span class="level level_2">
-                            <img src="img/${details.aqiIcon}.png" alt="${details.aqi}">
+								<span class="level level_${details.aqiLevel}">
+                            <img src="img/${details.aqiIcon}.png" alt="${details.aqiStr}">
                         </span>
-                        <em>${details.aqi}</em>
+                        <em>${details.aqiStr}</em>
                     </a>
                 </li>
             </ul>
@@ -96,7 +96,6 @@
             </div>
             <ul class="days clearfix">
                 <li>
-                    <%--<a href="javascript:;">今天</a>--%>
                     <em>今天</em>
                 </li>
                 <li>
@@ -116,7 +115,6 @@
             </ul>
             <ul class="days clearfix">
                 <li>
-                    <%--<a href="javascript:;">明天</a>--%>
                     <em>明天</em>
                 </li>
                 <li>
@@ -136,7 +134,6 @@
             </ul>
             <ul class="days clearfix">
                 <li>
-                    <%--<a href="javascript:;">后天</a>--%>
                     <em>后天</em>
                 </li>
                 <li>
