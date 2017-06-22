@@ -101,7 +101,7 @@
                 <li>
 							<span>
                             <img src="img/w1.png" alt="多云">
-                        </span> 多云
+                        </span> ${day3[0].conditionDay}
                 </li>
                 <li>20° / 30°</li>
                 <li>
@@ -120,7 +120,7 @@
                 <li>
 							<span>
                             <img src="img/w1.png" alt="多云">
-                        </span> 多云
+                        </span> ${day3[1].conditionDay}
                 </li>
                 <li>23° / 30°</li>
                 <li>
@@ -139,7 +139,7 @@
                 <li>
 							<span>
                             <img src="img/w1.png" alt="多云">
-                        </span> 多云
+                        </span> ${day3[2].conditionDay}
                 </li>
                 <li>23° / 31°</li>
                 <li>
