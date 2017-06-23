@@ -59,7 +59,7 @@
             <ul>
                 <li>
                     <a href="javascript:;">
-								<span class="level level_${details.aqiLevel}">
+                        <span class="level level_${details.aqiLevel}">
                             <img src="img/${details.aqiIcon}.png" alt="${details.aqiStr}">
                         </span>
                         <em>${details.aqiStr}</em>
@@ -94,63 +94,29 @@
                     </li>
                 </ul>
             </div>
-            <ul class="days clearfix">
-                <li>
-                    <em>今天</em>
-                </li>
-                <li>
-							<span>
-                            <img src="img/w1.png" alt="多云">
-                        </span> ${day3[0].conditionDay}
-                </li>
-                <li>20° / 30°</li>
-                <li>
-                    <em>西北风</em>
-                    <b>1级</b>
-                </li>
-                <li><strong class="level_2">
-                    78 良
-                </strong>
-                </li>
-            </ul>
-            <ul class="days clearfix">
-                <li>
-                    <em>明天</em>
-                </li>
-                <li>
-							<span>
-                            <img src="img/w1.png" alt="多云">
-                        </span> ${day3[1].conditionDay}
-                </li>
-                <li>23° / 30°</li>
-                <li>
-                    <em>北风</em>
-                    <b>1级</b>
-                </li>
-                <li><strong class="level_2">
-                    69 良
-                </strong>
-                </li>
-            </ul>
-            <ul class="days clearfix">
-                <li>
-                    <em>后天</em>
-                </li>
-                <li>
-							<span>
-                            <img src="img/w1.png" alt="多云">
-                        </span> ${day3[2].conditionDay}
-                </li>
-                <li>23° / 31°</li>
-                <li>
-                    <em>东北风</em>
-                    <b>2级</b>
-                </li>
-                <li><strong class="level_2">
-                    70 良
-                </strong>
-                </li>
-            </ul>
+            <c:forEach items="${day3}" var="day">
+                <ul class="days clearfix">
+                    <li>
+                        <em>${day.predictDay}</em>
+                    </li>
+                    <li>
+                <span>
+                    <img src="img/w${day.conIconDay}.png" alt="${day.conditionDay}">
+                </span> ${day.conditionDay}
+                    </li>
+                    <li>${day.tempNight}° / ${day.tempDay}°</li>
+                    <li>
+                        <em>${day.windDir}</em>
+                        <b>${day.windLevel}级</b>
+                    </li>
+                    <li>
+                        <strong class="level_${day.aqiLevel}">
+                                ${day.aqiStr}
+                        </strong>
+                    </li>
+                </ul>
+            </c:forEach>
+
         </div>
 
         <div class="hours">
@@ -177,7 +143,7 @@
                             <div class="canvas_point">
                                 <span></span>
                                 <div>
-                                    <em>29°</em>
+                                    <em></em>
                                 </div>
                             </div>
                         </div>
@@ -198,7 +164,7 @@
                             <div class="canvas_point">
                                 <span></span>
                                 <div>
-                                    <em>29°</em>
+                                    <em></em>
                                 </div>
                             </div>
                         </div>
@@ -215,94 +181,19 @@
             </div>
             <div class="live_index_grid">
                 <ul class="clearfix">
-                    <li>
-                        <a href="javascript:;" class="clearfix">
-									<span>
-                                                            <img src="img/7.png">
-                                                    </span>
-                            <dl>
-                                <dt>控油</dt>
-                                <dd>化妆</dd>
-                            </dl>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;" class="clearfix">
-									<span>
-                                                            <img src="img/12.png">
-                                                    </span>
-                            <dl>
-                                <dt>极易发</dt>
-                                <dd>感冒</dd>
-                            </dl>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;" class="clearfix">
-									<span>
-                                                            <img src="img/17.png">
-                                                    </span>
-                            <dl>
-                                <dt>较不适宜</dt>
-                                <dd>洗车</dd>
-                            </dl>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;" class="clearfix">
-									<span>
-                                                            <img src="img/0.png">
-                                                    </span>
-                            <dl>
-                                <dt>较差</dt>
-                                <dd>空气污染扩散</dd>
-                            </dl>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;" class="clearfix">
-									<span>
-                                                            <img src="img/20.png">
-                                                    </span>
-                            <dl>
-                                <dt>闷热</dt>
-                                <dd>穿衣</dd>
-                            </dl>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;" class="clearfix">
-									<span>
-                                                            <img src="img/21.png">
-                                                    </span>
-                            <dl>
-                                <dt>弱</dt>
-                                <dd>紫外线</dd>
-                            </dl>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;" class="clearfix">
-									<span>
-                                                            <img src="img/26.png">
-                                                    </span>
-                            <dl>
-                                <dt>适宜</dt>
-                                <dd>运动</dd>
-                            </dl>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;" class="clearfix">
-									<span>
-                                                            <img src="img/28.png">
-                                                    </span>
-                            <dl>
-                                <dt>较适宜</dt>
-                                <dd>钓鱼</dd>
-                            </dl>
-                        </a>
-                    </li>
+                    <c:forEach items="${liveIndex}" var="live">
+                        <li title="${live.desc}">
+                            <a href="javascript:;" class="clearfix">
+                            <span>
+                                <img src="img/${live.icon}.png">
+                            </span>
+                                <dl>
+                                    <dt>${live.status}</dt>
+                                    <dd>${live.name}</dd>
+                                </dl>
+                            </a>
+                        </li>
+                    </c:forEach>
                     <li></li>
                     <li></li>
                     <li></li>
