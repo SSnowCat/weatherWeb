@@ -29,7 +29,7 @@ function getPosition() {
     });
     navigator.geolocation ? navigator.geolocation.getCurrentPosition(showCity, function (e) {
         $.ajax({
-            url: 'iplocate',
+            url: 'defaultlocate',
             data: {},
             success: function (e) {
                 console.log(e), $("#locate").css({
@@ -89,7 +89,6 @@ var showCity = function (e) {
             url: "geolocate/" + t + "/" + a,
             data: {},
             success: function (e) {
-                alert(e);
                 $("#locate").css({
                     background: "url(icon/i_locate.png) no-repeat right center"
                 }), 0 != e && (location = e)
