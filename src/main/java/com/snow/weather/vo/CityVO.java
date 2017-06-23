@@ -3,7 +3,7 @@ package com.snow.weather.vo;
 /**
  * Created by 李德阳 on 2017/6/22.
  */
-public class City {
+public class CityVO {
     private String counname;
     private String pname;
     private String name;

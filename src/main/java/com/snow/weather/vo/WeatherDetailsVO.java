@@ -3,10 +3,11 @@ package com.snow.weather.vo;
 /**
  * Created by Administrator on 2017/6/22.
  */
-public class WeatherDetails {
+public class WeatherDetailsVO {
     private String condition;//天气状况
     private String conIcon;//天气状况图标
-    private String aqi;//空气质量
+    private int aqiLevel;//空气质量等级
+    private String aqiStr;//空气质量描述
     private String aqiIcon;//aqi图标
     private int humidity;//湿度
     private int temp;//温度
@@ -24,8 +25,12 @@ public class WeatherDetails {
         return conIcon;
     }
 
-    public String getAqi() {
-        return aqi;
+    public int getAqiLevel() {
+        return aqiLevel;
+    }
+
+    public String getAqiStr() {
+        return aqiStr;
     }
 
     public String getAqiIcon() {
@@ -68,8 +73,12 @@ public class WeatherDetails {
         this.conIcon = conIcon;
     }
 
-    public void setAqi(String aqi) {
-        this.aqi = aqi;
+    public void setAqiLevel(int aqiLevel) {
+        this.aqiLevel = aqiLevel;
+    }
+
+    public void setAqiStr(String aqiStr) {
+        this.aqiStr = aqiStr;
     }
 
     public void setAqiIcon(String aqiIcon) {

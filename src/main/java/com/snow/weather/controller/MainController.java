@@ -1,13 +1,16 @@
 package com.snow.weather.controller;
 
-import com.snow.weather.vo.City;
-import com.snow.weather.vo.WeatherDetails;
+import com.snow.weather.vo.CityVO;
+import com.snow.weather.vo.WeatherBriefVO;
+import com.snow.weather.vo.WeatherDetailsVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by 李德阳 on 2017/6/21.
@@ -56,16 +59,17 @@ public class MainController {
     }
 
     private void init(HttpSession session){
-        City city = new City();
-        city.setCounname("中国");
-        city.setPname("四川省");
-        city.setName("西昌市");
-        session.setAttribute("city",city);
-        WeatherDetails details = new WeatherDetails();
+        CityVO cityVO = new CityVO();
+        cityVO.setCounname("中国");
+        cityVO.setPname("四川省");
+        cityVO.setName("西昌市");
+        session.setAttribute("city", cityVO);
+        WeatherDetailsVO details = new WeatherDetailsVO();
         details.setCondition("雪");
         details.setHumidity(56);
         details.setConIcon("2");
-        details.setAqi("23 优");
+        details.setAqiLevel(1);
+        details.setAqiStr("23 优");
         details.setAqiIcon("2");
         details.setTemp(27);
         details.setTips("冷热适宜，感觉很舒适。");
@@ -74,6 +78,22 @@ public class MainController {
         details.setWindLevel(4);
         details.setCarLimit("尾号限行 4和6");
         session.setAttribute("details",details);
+
+        List<WeatherBriefVO> day3 = new ArrayList<>();
+        for (int i=0;i<3;++i){
+            WeatherBriefVO weatherBriefVO = new WeatherBriefVO();
+            weatherBriefVO.setConditionDay("小雨");
+            weatherBriefVO.setConIconDay("5");
+            weatherBriefVO.setTempDay(32);
+            weatherBriefVO.setTempNight(21);
+            weatherBriefVO.setWindDir("东南风");
+            weatherBriefVO.setWindLevel(3);
+            weatherBriefVO.setAqiLevel(2);
+            weatherBriefVO.setAqiStr("76 良");
+            weatherBriefVO.setAqiIcon("2");
+            day3.add(weatherBriefVO);
+        }
+        session.setAttribute("day3",day3);
     }
 
 }

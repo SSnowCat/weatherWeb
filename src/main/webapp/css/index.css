@@ -78,7 +78,7 @@ body {
 
 .wrap {
     width: 1000px;
-    margin: 0 auto
+    margin: 0 auto 5px;
 }
 
 .wrap .left {
@@ -544,7 +544,8 @@ body {
     max-width: 16px;
     max-height: 16px;
     display: inline-block;
-    vertical-align: middle
+    vertical-align: middle;
+    margin-top: 6px;
 }
 
 .wea_alert em {
