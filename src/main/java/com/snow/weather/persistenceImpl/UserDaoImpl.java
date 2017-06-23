@@ -48,7 +48,7 @@ public class UserDaoImpl implements UserDao{
 
     @Override
     public City getCity(String cityName) {
-//        return sessionFactory.getCurrentSession().get(City.class,cityid);
+//        return sessionFactory.getCurrentSession().get(CityVO.class,cityid);
             return  sessionFactory.getCurrentSession()
                     .createQuery("from City as o where o.cityName=?",City.class)
                     .setParameter(0,cityName)

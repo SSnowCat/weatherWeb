@@ -36,7 +36,8 @@ public class DataDaoImplTest {
 
     @Test
     public void testSaveCity(){
-       dataDao.saveCity(city.getCityName());
+       dataDao.saveCity("北京");
+
     }
 
     @Test
