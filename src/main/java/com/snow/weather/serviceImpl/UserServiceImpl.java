@@ -147,8 +147,17 @@ public class UserServiceImpl implements UserService {
     public List<WeatherBriefVO> getTwoWeekBriefVO(City city) {
         List<Weather> weathers = userDao.getWeather(city);
         List<WeatherBriefVO> day15 = new ArrayList<>();
+        String[] weekOfDays = {"星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"};
         for(int i=0;i<15;i++){
             WeatherBriefVO weatherBriefVO = new WeatherBriefVO(weathers.get(i));
+            Date date = weathers.get(i).getDay();
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            int w = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+            if (w < 0){
+                w = 0;
+            }
+            weatherBriefVO.setPredictWeek(weekOfDays[w]);
             day15.add(weatherBriefVO);
         }
         return day15;
