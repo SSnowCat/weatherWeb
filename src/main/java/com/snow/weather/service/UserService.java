@@ -20,10 +20,15 @@ import java.util.List;
 public interface UserService {
 
     City getCity(String cityName);
+
     CityVO getCityVO(City city);
+
     List<LiveIndexVO> getLiveIndexVOs(City city);
+
     List<WeatherBriefVO> getWeatherBriefVO(City city);//简约天气
+
     WeatherDetailsVO getWeatherDetailsVO(City city);//天气实况
+
     List<Temp> getTemp(City city);//获取24小时温度
 
     List<Weather> getTwoWeeksWeather(City city);//获取两周天气
@@ -33,5 +38,7 @@ public interface UserService {
     Weather getCurrentWeather(City city);
 
     Temp getCurrentTemp(City city);
+
+    List<WeatherBriefVO> getTwoWeekBriefVO(City city);
 
 }
