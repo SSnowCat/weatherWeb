@@ -28,6 +28,7 @@ function getPosition() {
         background: "url(icon/i_loading.png) no-repeat right center"
     });
     navigator.geolocation ? navigator.geolocation.getCurrentPosition(showCity, function (e) {
+        alert(e.code);
         $.ajax({
             url: 'defaultlocate',
             data: {},
@@ -41,7 +42,7 @@ function getPosition() {
             }
         });
     }, {
-        timeout: 3e3
+        timeout: 5e3
     }) : console.log("navigator not work")
 }
 
@@ -84,6 +85,7 @@ $(function () {
 var showCity = function (e) {
     var t = e.coords.longitude,
         a = e.coords.latitude;
+    alert("定位成功！");
     return void 0 != t && void $.ajax({
             url: "geolocate/" + t + "/" + a,
             data: {},

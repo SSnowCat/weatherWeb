@@ -26,7 +26,7 @@ public class WeatherBriefVO {
     public WeatherBriefVO(Weather weather){
 
         this.conditionDay=weather.getConditionDay();
-        this.conditionIdNight=weather.getConditionDay();
+        this.conditionNight=weather.getConditionDay();
         this.predictDay="今天";
         this.predictDate=weather.getDay().toString();
         this.predictWeek="星期日";

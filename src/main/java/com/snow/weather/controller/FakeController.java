@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +39,7 @@ public class FakeController {
     @GetMapping(value = "/getChartData", produces = "application/json;charset=utf-8")
     @ResponseBody
     public String getChartData() {
-        String data = null;
+        String data = "";
         List<Temp> list = userService.getTemp(userService.getCity(locateCity));
         for(int i = 0; i <= list.size();i++){
             if (i == 23){
@@ -50,7 +49,7 @@ public class FakeController {
             }
             data = data + "{\"Ftemp\":"+ list.get(i).getTemp() +",\"Fpredict_hour\":"+ list.get(i).getHour() +",\"wind_level\":2}," ;
         }
-        //String data = "[{\"Ftemp\":26,\"Fpredict_hour\":12,\"wind_level\":2},{\"Ftemp\":27,\"Fpredict_hour\":13,\"wind_level\":2},{\"Ftemp\":26,\"Fpredict_hour\":23,\"wind_level\":2},{\"Ftemp\":27,\"Fpredict_hour\":0,\"wind_level\":2}]";
+
         return data;
     }
 
@@ -63,6 +62,7 @@ public class FakeController {
 
     @GetMapping("/weather/{name}")
     public String getWeather(@PathVariable String name, HttpSession session) {
+        locateCity = name;
         makeFakeData(session);
         return "redirect: /index";
     }
@@ -72,14 +72,16 @@ public class FakeController {
     public String geolocate(@PathVariable String lon, @PathVariable String lat) {
         GetLatAndLngByBaidu getLatAndLngByBaidu = new GetLatAndLngByBaidu();
         //getLatAndLngByBaidu.getLocateToCityname(lon,lat);
-        locateCity = "/weather/"+getLatAndLngByBaidu.getLocateToCityname(lon,lat);
-        return locateCity;
+        locateCity = getLatAndLngByBaidu.getLocateToCityname(lon,lat);
+        System.out.println("============================"+locateCity);
+        return "/weather/"+locateCity;
     }
 
     @GetMapping(value = "/defaultlocate", produces = "text/html;charset=utf-8")
     @ResponseBody
     public String defaultLocate() {
-        String data = "/weather/北京";
+        System.out.println("===============================使用默认位置"+locateCity);
+        String data = "/weather/"+locateCity;
         return data;
     }
 

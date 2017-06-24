@@ -46,6 +46,8 @@ public class UserServiceImpl implements UserService {
         List<LiveIndexVO> liveIndexVOS=new ArrayList<>();
         for (Life li:lifeList) {
             LiveIndexVO liveIndexVO = new LiveIndexVO(li);
+            String livname=liveIndexVO.getName();
+            liveIndexVO.setName(livname.substring(0,livname.length()-2));
             liveIndexVOS.add(liveIndexVO);
         }
         return liveIndexVOS;
