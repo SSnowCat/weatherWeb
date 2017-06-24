@@ -39,7 +39,7 @@ public class UserDaoTest {
     @Test
     public void testLife(){
         City city =new City();
-        city.setCityName("北京市");
+        city.setCityName("广州市");
         city.setCityId(0);
         List<Life> life= userDao.getLife(city);
         Assert.assertNotEquals(-1,life.size());
@@ -62,4 +62,6 @@ public class UserDaoTest {
         List<Weather> weathers= userDao.getWeather(city);
         Assert.assertNotEquals(-1,weathers.size());
     }
+
+
 }

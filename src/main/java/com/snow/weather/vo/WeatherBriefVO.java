@@ -6,6 +6,7 @@ package com.snow.weather.vo;
 public class WeatherBriefVO {
     private String conditionDay;//白天天气状况
     private String conditionIdNight;//晚上天气状况
+    private String predictDay;//预报时间
     private String predictDate;//预报日期
     private String predictWeek;//预报星期
     private int tempDay;//白天温度
@@ -25,6 +26,10 @@ public class WeatherBriefVO {
 
     public String getConditionIdNight() {
         return conditionIdNight;
+    }
+
+    public String getPredictDay() {
+        return predictDay;
     }
 
     public String getPredictDate() {
@@ -81,6 +86,10 @@ public class WeatherBriefVO {
 
     public void setConditionIdNight(String conditionIdNight) {
         this.conditionIdNight = conditionIdNight;
+    }
+
+    public void setPredictDay(String predictDay) {
+        this.predictDay = predictDay;
     }
 
     public void setPredictDate(String predictDate) {
