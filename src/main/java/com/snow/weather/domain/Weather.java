@@ -14,10 +14,11 @@ public class Weather implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Date day;
-    private String conditionDay;
-    private int tempDay;
-    private int tempNight;
+    private Date day;//日期
+    private String conditionDay;//天气状况
+    private Integer conditionIdDay;
+    private int tempDay;//白天温度
+    private int tempNight;//夜晚温度
     @ManyToOne
     @JoinColumn(name = "cityId")
     private City city;
@@ -44,6 +45,14 @@ public class Weather implements Serializable{
 
     public void setConditionDay(String conditionDay) {
         this.conditionDay = conditionDay;
+    }
+
+    public Integer getConditionIdDay() {
+        return conditionIdDay;
+    }
+
+    public void setConditionIdDay(Integer conditionIdDay) {
+        this.conditionIdDay = conditionIdDay;
     }
 
     public int getTempDay() {

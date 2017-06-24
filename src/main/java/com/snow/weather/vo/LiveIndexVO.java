@@ -1,5 +1,7 @@
 package com.snow.weather.vo;
 
+import com.snow.weather.domain.Life;
+
 /**
  * Created by 李德阳 on 2017/6/23.
  */
@@ -9,6 +11,13 @@ public class LiveIndexVO {
     private String desc;
     private String status;
 
+    public LiveIndexVO(Life life){
+        this.setName(life.getName());
+        this.desc=life.getDesc();
+        this.status=life.getStatus();
+    }
+
+    public LiveIndexVO(){}
     public String getName() {
         return name;
     }

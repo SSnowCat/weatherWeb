@@ -1,15 +1,10 @@
 package com.snow.test;
 
-/**
- * Created by Administrator on 2017/6/21.
- */
 import com.snow.weather.domain.City;
-import com.snow.weather.domain.Life;
-import com.snow.weather.domain.Temp;
-import com.snow.weather.domain.Weather;
-import com.snow.weather.persistence.UserDao;
 import com.snow.weather.service.UserService;
 import com.snow.weather.serviceImpl.UserServiceImpl;
+import com.snow.weather.vo.LiveIndexVO;
+import com.snow.weather.vo.WeatherBriefVO;
 import com.snow.weather.vo.WeatherDetailsVO;
 import org.junit.Assert;
 import org.junit.Test;
@@ -20,57 +15,45 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Calendar;
+import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * Created by Administrator on 2017/6/23.
+ */
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:app.xml")
 @Transactional
 @Rollback(false)
 
-public class UserDaoTest {
+public class UserServiceTest {
 
 //    @Autowired
-//    private UserDao userDao;
+//    private UserService userService;
 //
 //    @Test
-//    public void testCity(){
-//
-//        City city= userDao.getCity("西城区");
-//        Assert.assertEquals(284610,city.getCityId());
-//    }
-//
-//    @Test
-//    public void testLife(){
+//    public void testWeatherDetails(){
 //        City city =new City();
 //        city.setCityName("西城区");
 //        city.setCityId(284610);
-//        List<Life> life= userDao.getLife(city);
-//        int x=life.get(0).getId();
-//        Assert.assertEquals(33,x);
+//        WeatherDetailsVO weatherDetails=userService.getWeatherDetailsVO(city);
+//        Assert.assertEquals(22,weatherDetails.getTemp());
 //    }
-//
 //    @Test
-//    public void testTemp(){
+//    public void testWeatherBriefVO(){
 //        City city =new City();
 //        city.setCityName("西城区");
 //        city.setCityId(284610);
-//        List<Temp> temp= userDao.getTemp(city);
-//        int x=temp.get(0).getId();
-//        Assert.assertEquals(53,x);
+//        List<WeatherBriefVO> weatherBriefVOList= userService.getWeatherBriefVO(city);
+//        Assert.assertEquals(23,weatherBriefVOList.get(0).getTempDay());
 //    }
-//
 //    @Test
-//    public void testWeather(){
+//    public void testLiveIndexVO(){
 //        City city =new City();
 //        city.setCityName("西城区");
 //        city.setCityId(284610);
-//        List<Weather> weathers= userDao.getWeather(city);
-//        int x=weathers.get(0).getId();
-//        Assert.assertEquals(65,x);
+//        List<LiveIndexVO> liveIndexVOS=userService.getLiveIndexVOs(city);
+//        Assert.assertEquals(true,liveIndexVOS.get(0).getStatus().equals("控油"));
 //    }
-//
-//
-//
-
 }

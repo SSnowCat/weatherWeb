@@ -6,6 +6,8 @@ import com.snow.weather.domain.Temp;
 import com.snow.weather.domain.Weather;
 import com.snow.weather.persistence.UserDao;
 import com.snow.weather.service.UserService;
+import com.snow.weather.vo.CityVO;
+import com.snow.weather.vo.LiveIndexVO;
 import com.snow.weather.vo.WeatherBriefVO;
 import com.snow.weather.vo.WeatherDetailsVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,27 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
-    private UserService userService =new UserServiceImpl();
+
+    @Override
+    public City getCity(String cityName) {
+        return userDao.getCity(cityName);
+    }
+
+    @Override
+    public CityVO getCityVO(City city) {
+        return new CityVO(city);
+    }
+
+    @Override
+    public List<LiveIndexVO> getLiveIndexVOs(City city) {
+        List<Life> lifeList=userDao.getLife(city);
+        List<LiveIndexVO> liveIndexVOS=new ArrayList<>();
+        for (Life li:lifeList) {
+            LiveIndexVO liveIndexVO = new LiveIndexVO(li);
+            liveIndexVOS.add(liveIndexVO);
+        }
+        return liveIndexVOS;
+    }
 
     @Override
     public List<WeatherBriefVO> getWeatherBriefVO(City city) {
@@ -41,7 +63,7 @@ public class UserServiceImpl implements UserService {
         weatherBriefVOTomorrow.setPredictDay("明天");
         weatherBriefVOList.add(weatherBriefVOTomorrow);
         //后天
-        WeatherBriefVO weatherBriefVOTheDay=new WeatherBriefVO(weathers.get(1));
+        WeatherBriefVO weatherBriefVOTheDay=new WeatherBriefVO(weathers.get(2));
         weatherBriefVOTheDay.setPredictDay("后天");
         weatherBriefVOList.add(weatherBriefVOTheDay);
         return weatherBriefVOList;
@@ -54,9 +76,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public WeatherDetailsVO getWeatherDetailsVO(City city) {
 
-        Weather weather=userService.getCurrentWeather(city);
-        Temp temp = userService.getCurrentTemp(city);
-        return new WeatherDetailsVO(weather,temp);
+        Calendar cal = Calendar.getInstance();
+        int hour=cal.get(Calendar.HOUR);//小时
+        int minute=cal.get(Calendar.MINUTE);//分
+        //修改*********************************************
+        Weather weather=userDao.getWeather(city).get(1);
+        Temp temp = getCurrentTemp(city);
+        WeatherDetailsVO weatherDetailsVO=new WeatherDetailsVO(weather,temp);
+        String updtime= "今日"+hour+"时"+minute+"分"+"更新";
+        weatherDetailsVO.setUpdatetime(updtime);
+        return weatherDetailsVO;
     }
 
     /**

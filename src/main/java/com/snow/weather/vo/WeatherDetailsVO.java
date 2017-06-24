@@ -1,5 +1,8 @@
 package com.snow.weather.vo;
 
+import com.snow.weather.domain.Temp;
+import com.snow.weather.domain.Weather;
+
 /**
  * Created by Administrator on 2017/6/22.
  */
@@ -16,6 +19,23 @@ public class WeatherDetailsVO {
     private String windDir;//风向
     private int windLevel;//风力等级
     private String carLimit;//限行数据
+
+    public WeatherDetailsVO(Weather weather, Temp temp){
+        this.condition=weather.getConditionDay();
+        this.conIcon=weather.getConditionIdDay().toString();
+        this.aqiLevel=1;
+        this.aqiStr="23 优";
+        this.aqiIcon="2";
+        this.humidity=72;
+        this.temp=temp.getTemp();
+        this.tips="无";
+        this.updatetime="今日15：00更新";
+        this.windDir="西北风";
+        this.windLevel=3;
+        this.carLimit="今日限号2和7";
+    }
+
+    public WeatherDetailsVO(){}
 
     public String getCondition() {
         return condition;

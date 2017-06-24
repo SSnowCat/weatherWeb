@@ -1,5 +1,6 @@
 package com.snow.weather.util;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
@@ -34,7 +35,7 @@ public class GetLatAndLngByBaidu {
         headers.put("Authorization", "APPCODE " + appcode);
         Map<String, String> querys = new HashMap<String, String>();
         querys.put("address", address);
-        querys.put("type", "google");
+        querys.put("type", "baidu");
         String lat = null;
         String lng = null;
 
@@ -61,6 +62,42 @@ public class GetLatAndLngByBaidu {
             e.printStackTrace();
         }
         return new String[]{lat,lng};
+    }
 
+    public String getLocateToCityname(String lon,String lat){
+        String host = "http://jisujwddz.market.alicloudapi.com";
+        String path = "/geoconvert/coord2addr";
+        String method = "GET";
+        String appcode = "44325ff075574eeba7b44bd5180d2c1f";
+        String cityName = null;
+        Map<String, String> headers = new HashMap<String, String>();
+        //最后在header中的格式(中间是英文空格)为Authorization:APPCODE 83359fd73fe94948385f570e3c139105
+        headers.put("Authorization", "APPCODE " + appcode);
+        Map<String, String> querys = new HashMap<String, String>();
+        querys.put("lat", lon);
+        querys.put("lng", lat);
+        querys.put("type", "baidu");
+
+
+        try {
+            /**
+             * 重要提示如下:
+             * HttpUtils请从
+             * https://github.com/aliyun/api-gateway-demo-sign-java/blob/master/src/main/java/com/aliyun/api/gateway/demo/util/HttpUtils.java
+             * 下载
+             *
+             * 相应的依赖请参照
+             * https://github.com/aliyun/api-gateway-demo-sign-java/blob/master/pom.xml
+             */
+            HttpResponse response = HttpUtils.doGet(host, path, method, headers, querys);
+            //System.out.println(response.toString());
+            //获取response的body
+            //System.out.println(EntityUtils.toString(response.getEntity()));
+            String json = EntityUtils.toString(response.getEntity());
+            cityName = (String)JSONObject.parseObject(json).getJSONObject("result").get("district");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return cityName;
     }
 }

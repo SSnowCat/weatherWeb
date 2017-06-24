@@ -21,6 +21,11 @@ public class UserDaoImpl implements UserDao{
     @Autowired
     private SessionFactory sessionFactory;
 
+    /**
+     * 通过城市获取生活指数
+     * @param city
+     * @return 生活指数的结果集
+     */
     @Override
     public List<Life> getLife(City city) {
         return sessionFactory.getCurrentSession()
@@ -29,6 +34,11 @@ public class UserDaoImpl implements UserDao{
                 .getResultList();
     }
 
+    /**
+     * 通过城市获取24小时温度
+     * @param city
+     * @return 温度结果集
+     */
     @Override
     public List<Temp> getTemp(City city) {
         return sessionFactory.getCurrentSession()
@@ -38,6 +48,11 @@ public class UserDaoImpl implements UserDao{
 
     }
 
+    /**
+     * 通过城市获取15天天气状况
+     * @param city
+     * @return
+     */
     @Override
     public List<Weather> getWeather(City city) {
         return sessionFactory.getCurrentSession()
@@ -46,11 +61,12 @@ public class UserDaoImpl implements UserDao{
                 .getResultList();
     }
 
+
     @Override
     public City getCity(String cityName) {
 //        return sessionFactory.getCurrentSession().get(CityVO.class,cityid);
             return  sessionFactory.getCurrentSession()
-                    .createQuery("from City as o where o.cityName=?",City.class)
+                    .createQuery("from City as o where o.districtName=?",City.class)
                     .setParameter(0,cityName)
                     .getSingleResult();
     }

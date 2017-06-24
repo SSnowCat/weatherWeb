@@ -23,36 +23,36 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @Rollback(false)
 public class DataDaoImplTest {
-    private static final String LAT = "39.91488908";
-    private static final String LON = "116.40387397";
-    private static City city;
-    @Autowired
-    private DataDao dataDao;
-
-    @BeforeClass
-    public static void init(){
-        city = AnalyseJSON.getCity(GetJSON.getLifeJson(LAT,LON));
-    }
-
-    @Test
-    public void testSaveCity(){
-       dataDao.saveCity("北京");
-
-    }
-
-    @Test
-    public void testSaveLife(){
-        dataDao.saveLife(city.getCityName());
-    }
-
-    @Test
-    public void testSaveTemp(){
-        dataDao.saveTemp(city.getCityName());
-    }
-
-    @Test
-    public void testSaveWeather(){
-        dataDao.saveWeather(city.getCityName());
-    }
+//    private static final String LAT = "39.91488908";
+//    private static final String LON = "116.40387397";
+//    private static City city;
+//    @Autowired
+//    private DataDao dataDao;
+//
+//    @BeforeClass
+//    public static void init(){
+//        city = AnalyseJSON.getCity(GetJSON.getLifeJson(LAT,LON));
+//    }
+//
+//    @Test
+//    public void testSaveCity(){
+//       dataDao.saveCity("北京");
+//
+//    }
+//
+//    @Test
+//    public void testSaveLife(){
+//        dataDao.saveLife(city.getCityName());
+//    }
+//
+//    @Test
+//    public void testSaveTemp(){
+//        dataDao.saveTemp(city.getCityName());
+//    }
+//
+//    @Test
+//    public void testSaveWeather(){
+//        dataDao.saveWeather("北京");
+//    }
 
 }

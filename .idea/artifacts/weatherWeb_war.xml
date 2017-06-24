@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="war" name="weatherWeb:war">
-    <output-path>$PROJECT_DIR$/../weatherWeb/target</output-path>
+    <output-path>$PROJECT_DIR$/target</output-path>
     <root id="archive" name="weatherWeb.war">
       <element id="artifact" artifact-name="weatherWeb:war exploded" />
     </root>

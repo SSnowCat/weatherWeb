@@ -1,5 +1,7 @@
 package com.snow.weather.vo;
 
+import com.snow.weather.domain.Weather;
+
 /**
  * Created by 李德阳 on 2017/6/22.
  */
@@ -20,16 +22,41 @@ public class WeatherBriefVO {
     private String conIconNight;//晚上天气状况图标
     private String updatetime;//发布时间
 
+
+    public WeatherBriefVO(Weather weather){
+
+        this.conditionDay=weather.getConditionDay();
+        this.conditionIdNight=weather.getConditionDay();
+        this.predictDay="今天";
+        this.predictDate=weather.getDay().toString();
+        this.predictWeek="星期日";
+        this.tempDay=weather.getTempDay();
+        this.tempNight=weather.getTempNight();
+        this.aqiLevel=2;
+        this.aqiStr="72 良";
+        this.aqiIcon="2";
+        this.windDir="西北";
+        this.windLevel=3;
+        this.conIconDay=weather.getConditionIdDay().toString();
+        this.conIconNight=weather.getConditionDay().toString();
+        this.updatetime="今日15：00更新";
+    }
+
+    public String getPredictDay() {
+        return predictDay;
+    }
+
+    public void setPredictDay(String predictDay) {
+        this.predictDay = predictDay;
+    }
+    public WeatherBriefVO(){}
+
     public String getConditionDay() {
         return conditionDay;
     }
 
     public String getConditionNight() {
         return conditionNight;
-    }
-
-    public String getPredictDay() {
-        return predictDay;
     }
 
     public String getPredictDate() {
@@ -86,10 +113,6 @@ public class WeatherBriefVO {
 
     public void setConditionNight(String conditionNight) {
         this.conditionNight = conditionNight;
-    }
-
-    public void setPredictDay(String predictDay) {
-        this.predictDay = predictDay;
     }
 
     public void setPredictDate(String predictDate) {
