@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +21,7 @@ public class FakeController {
 
     @GetMapping("/index")
     public String toIndex(HttpSession session) {
-        fakeDataMake(session);
+        makeFakeData(session);
         return "index";
     }
 
@@ -42,7 +41,7 @@ public class FakeController {
 
     @GetMapping("/weather/{name}")
     public String getWeather(@PathVariable String name, HttpSession session) {
-        fakeDataMake(session);
+        makeFakeData(session);
         return "redirect: /index";
     }
 
@@ -60,7 +59,7 @@ public class FakeController {
         return data;
     }
 
-    private void fakeDataMake(HttpSession session) {
+    private void makeFakeData(HttpSession session) {
         CityVO cityVO = new CityVO();
         cityVO.setCounname("中国");
         cityVO.setPname("四川省");
