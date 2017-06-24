@@ -33,7 +33,7 @@ public class FakeController {
 
     @GetMapping("/index")
     public String toIndex(HttpSession session) {
-        fakeDataMake(session);
+        makeFakeData(session);
         return "index";
     }
 
@@ -63,7 +63,7 @@ public class FakeController {
 
     @GetMapping("/weather/{name}")
     public String getWeather(@PathVariable String name, HttpSession session) {
-        fakeDataMake(session);
+        makeFakeData(session);
         return "redirect: /index";
     }
 
@@ -83,7 +83,7 @@ public class FakeController {
         return data;
     }
 
-    private void fakeDataMake(HttpSession session) {
+    private void makeFakeData(HttpSession session) {
         City city = userService.getCity(locateCity);
         CityVO cityVO = new CityVO();
         cityVO.setCounname(city.getCunName());
