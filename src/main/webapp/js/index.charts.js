@@ -1,4 +1,5 @@
 $(function () {
+
     function e(e) {
         var n = e;
         var a = {

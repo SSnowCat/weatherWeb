@@ -38,7 +38,7 @@
                 <em>${city.name}， ${city.pname}， ${city.counname}</em>
                 <strong id="locate"></strong>
                 <b><!--icon--></b>
-                <input type="text" placeholder="输入你要查找的城市">
+                <input type="text" name="cityname" id="cityname" placeholder="输入你要查找的城市">
                 <i></i>
             </div>
         </div>
@@ -242,6 +242,7 @@
 <script src="js/index.charts.js"></script>
 <script src="js/index.js"></script>
 <script src="js/forecast.js"></script>
+
 
 <div class="foot_box clearfix">
     <div class="foot clearfix">

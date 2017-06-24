@@ -1,4 +1,14 @@
 $(document).ready(function () {
+
+    $("#cityname").bind('keydown',function (event) {
+        if(event.keyCode == 13){
+            alert($("#cityname").val());
+        }
+
+
+
+    });
+
     var t = {
         ul: $(".detail_future_grid .wea_list ul"),
         prev: $(".detail_future_grid .prev"),
@@ -32,5 +42,6 @@ $(document).ready(function () {
         var e = parseInt($(".detail_future_grid .wea_list ul").css("marginLeft"));
         e <= 680 - i + 20 + a * n ? (t = 680 - i + 20, $(this).hide()) : (t = e - a * n, $(this).show()), $(".detail_future_grid .wea_list ul").animate({marginLeft: t}, 500)
     });
+
 
 });
