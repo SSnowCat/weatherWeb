@@ -63,6 +63,7 @@ public class UserServiceTest {
         city.setCityName("西城区");
         city.setCityId(284610);
         List<WeatherBriefVO> day15 = userService.getTwoWeekBriefVO(city);
-        Assert.assertEquals(30,day15.get(3).getTempDay());
+        Assert.assertEquals(true,day15.get(3).getPredictWeek().equals("星期日"));
+//        Assert.assertEquals(30,day15.get(3).getTempDay());
     }
 }
