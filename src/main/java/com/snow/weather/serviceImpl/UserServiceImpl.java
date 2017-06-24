@@ -143,4 +143,15 @@ public class UserServiceImpl implements UserService {
         return temp;
     }
 
+    @Override
+    public List<WeatherBriefVO> getTwoWeekBriefVO(City city) {
+        List<Weather> weathers = userDao.getWeather(city);
+        List<WeatherBriefVO> day15 = new ArrayList<>();
+        for(int i=0;i<15;i++){
+            WeatherBriefVO weatherBriefVO = new WeatherBriefVO(weathers.get(i));
+            day15.add(weatherBriefVO);
+        }
+        return day15;
+    }
+
 }
