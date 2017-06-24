@@ -2,7 +2,6 @@ package com.snow.weather.controller;
 
 import com.snow.weather.domain.City;
 import com.snow.weather.domain.Temp;
-import com.snow.weather.domain.Weather;
 import com.snow.weather.service.UserService;
 import com.snow.weather.util.GetLatAndLngByBaidu;
 import com.snow.weather.vo.CityVO;
@@ -71,16 +70,13 @@ public class FakeController {
     @ResponseBody
     public String geolocate(@PathVariable String lon, @PathVariable String lat) {
         GetLatAndLngByBaidu getLatAndLngByBaidu = new GetLatAndLngByBaidu();
-        //getLatAndLngByBaidu.getLocateToCityname(lon,lat);
         locateCity = getLatAndLngByBaidu.getLocateToCityname(lon,lat);
-        System.out.println("============================"+locateCity);
         return "/weather/"+locateCity;
     }
 
     @GetMapping(value = "/defaultlocate", produces = "text/html;charset=utf-8")
     @ResponseBody
     public String defaultLocate() {
-        System.out.println("===============================使用默认位置"+locateCity);
         String data = "/weather/"+locateCity;
         return data;
     }
@@ -91,39 +87,19 @@ public class FakeController {
         cityVO.setCounname(city.getCunName());
         cityVO.setPname(city.getCityName());
         cityVO.setName(city.getDistrictName());
+
         session.setAttribute("city", cityVO);
-    //获取天气实况
+
         WeatherDetailsVO details = userService.getWeatherDetailsVO(city);
         session.setAttribute("details", details);
-
-
 
         List<WeatherBriefVO> day3 = userService.getWeatherBriefVO(city);
         session.setAttribute("day3", day3);
 
         List<LiveIndexVO> liveIndex = userService.getLiveIndexVOs(city);
-
-
         session.setAttribute("liveIndex",liveIndex);
 
-        List<WeatherBriefVO> day15 = new ArrayList<>();
-        for (int i=0;i<15;i++) {
-            WeatherBriefVO weatherBriefVO = new WeatherBriefVO();
-            weatherBriefVO.setPredictDay("后天");
-            weatherBriefVO.setConditionDay("小雨");
-            weatherBriefVO.setConditionNight("多云");
-            weatherBriefVO.setConIconDay("5");
-            weatherBriefVO.setConIconNight("5");
-            weatherBriefVO.setTempDay(32);
-            weatherBriefVO.setTempNight(21);
-            weatherBriefVO.setWindDir("东南风");
-            weatherBriefVO.setWindLevel(3);
-            weatherBriefVO.setAqiLevel(2);
-            weatherBriefVO.setAqiStr("76 良");
-            weatherBriefVO.setAqiIcon("2");
-            day15.add(weatherBriefVO);
-        }
-
+        List<WeatherBriefVO> day15 = userService.getTwoWeekBriefVO(city);
         session.setAttribute("day15", day15);
     }
 
