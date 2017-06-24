@@ -38,7 +38,7 @@ public class WeatherBriefVO {
         this.windDir="西北";
         this.windLevel=3;
         this.conIconDay=weather.getConditionIdDay().toString();
-        this.conIconNight=weather.getConditionDay().toString();
+        this.conIconNight=weather.getConditionIdDay().toString();
         this.updatetime="今日15：00更新";
     }
 

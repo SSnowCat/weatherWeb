@@ -128,7 +128,7 @@
                     <ul class="clearfix" style="width: 1120px; margin-left: 0px;">
                     <c:forEach items="${day15}" var="day">
                         <li>
-                            <span class="week">${day.predictDay}</span>
+                            <span class="week">${day.predictWeek}</span>
                             <span class="wea" style="font-size: 12px;">${day.conditionDay}</span>
                             <span class="weai">
                                 <img src="img/w${day.conIconDay}.png" alt="${day.conditionDay}">
