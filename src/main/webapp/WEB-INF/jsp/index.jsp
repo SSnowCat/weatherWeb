@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2017/6/21
-  Time: 13:31
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -12,6 +5,7 @@
     <meta charset="UTF-8">
     <title>天气网</title>
     <link rel="stylesheet" href="css/index.css" charset="utf-8">
+    <link rel="stylesheet" href="css/chanle.css" charset="utf-8">
 
 </head>
 
@@ -85,12 +79,12 @@
 </div>
 <div class="wrap clearfix">
     <div class="left">
-        <div class="forecast clearfix">
+        <div id="brief_future" class="forecast clearfix">
             <div class="g_title">
                 <span>预报</span>
                 <ul class="nav">
                     <li>
-                        <a href="javascript:;">15天预报</a>
+                        <a href="javascript:showDay15();">15天预报</a>
                     </li>
                 </ul>
             </div>
@@ -117,6 +111,45 @@
                 </ul>
             </c:forEach>
 
+        </div>
+
+        <div id="detail_future" style="display: none;">
+            <div class="g_title">
+                <span>15天预报</span>
+                <ul class="nav">
+                    <li>
+                        <a href="javascript:showDay3();">3天预报</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="detail_future_grid">
+                <div class="prev" style="display: none;"></div>
+                <div class="wea_list clearfix">
+                    <ul class="clearfix" style="width: 1120px; margin-left: 0px;">
+                    <c:forEach items="${day15}" var="day">
+                        <li>
+                            <span class="week">${day.predictDay}</span>
+                            <span class="wea" style="font-size: 12px;">${day.conditionDay}</span>
+                            <span class="weai">
+                                <img src="img/w${day.conIconDay}.png" alt="${day.conditionDay}">
+                            </span>
+                            <div class="tree clearfix">
+                                <p style="top: 0px; bottom: 18.6667px;">
+                                    <b>${day.tempDay}°</b>
+                                    <strong>${day.tempNight}°</strong>
+                                </p>
+                            </div>
+                            <span class="weai">
+                                <img src="img/w${day.conIconNight}.png" alt="${day.conditionNight}">
+                            </span>
+                            <span class="wea" style="font-size: 12px;">${day.conditionNight}</span>
+                            <span class="week">${day.predictDate}</span>
+                        </li>
+                    </c:forEach>
+                    </ul>
+                </div>
+                <div class="next"></div>
+            </div>
         </div>
 
         <div class="hours">
@@ -208,6 +241,7 @@
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script src="js/index.charts.js"></script>
 <script src="js/index.js"></script>
+<script src="js/forecast.js"></script>
 
 <div class="foot_box clearfix">
     <div class="foot clearfix">

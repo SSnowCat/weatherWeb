@@ -175,6 +175,26 @@ public class FakeController {
         liveIndex.add(live8);
 
         session.setAttribute("liveIndex",liveIndex);
+
+        List<WeatherBriefVO> day15 = new ArrayList<>();
+        for (int i=0;i<15;i++) {
+            WeatherBriefVO weatherBriefVO = new WeatherBriefVO();
+            weatherBriefVO.setPredictDay("后天");
+            weatherBriefVO.setConditionDay("小雨");
+            weatherBriefVO.setConditionNight("多云");
+            weatherBriefVO.setConIconDay("5");
+            weatherBriefVO.setConIconNight("5");
+            weatherBriefVO.setTempDay(32);
+            weatherBriefVO.setTempNight(21);
+            weatherBriefVO.setWindDir("东南风");
+            weatherBriefVO.setWindLevel(3);
+            weatherBriefVO.setAqiLevel(2);
+            weatherBriefVO.setAqiStr("76 良");
+            weatherBriefVO.setAqiIcon("2");
+            day15.add(weatherBriefVO);
+        }
+
+        session.setAttribute("day15", day15);
     }
 
 }
