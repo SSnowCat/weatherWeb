@@ -96,4 +96,30 @@ public final class AnalyseJSON {
         return list;
     }
 
+    public static String getCitySerch(String param) {
+        String s= GetJSON.getCityImaging("http://tianqi.moji.com/api/citysearch", param);
+          JSONObject jsonObject = JSONObject.parseObject(s);
+        JSONArray cityList = jsonObject.getJSONArray("city_list");
+        List<CitySearch> list = JSON.parseArray(cityList.toJSONString(), CitySearch.class);
+        //System.out.println(list);
+        //System.out.println("哈哈哈" + list.get(0).getPname());
+        String data = "";
+        for (int i = 0; i < list.size();i++) {
+            if (i == list.size() - 1) {
+
+                data = "[" + data + "{\"counname\":\"" + list.get(i).getCounname() + "\",\"name\":\"" + list.get(i).getName() + "\",\"pname\":\"" + list.get(i).getPname() + "\"}" + "]";
+                break;
+            }
+            data = data + "{\"counname\":\"" + list.get(i).getCounname() + "\",\"name\":\"" + list.get(i).getName() + "\",\"pname\":\"" + list.get(i).getPname() + "\"},";
+
+
+        }
+       // System.out.println(param);
+        //System.out.println(data);
+        return data;
+        //System.out.println(cityList);
+
+        // System.out.println(s);
+    }
+
 }

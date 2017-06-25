@@ -26,7 +26,7 @@ public class WeatherBriefVO {
     public WeatherBriefVO(Weather weather){
 
         this.conditionDay=weather.getConditionDay();
-        this.conditionIdNight=weather.getConditionDay();
+        this.conditionNight=weather.getConditionDay();
         this.predictDay="今天";
         this.predictDate=weather.getDay().toString();
         this.predictWeek="星期日";
@@ -38,7 +38,7 @@ public class WeatherBriefVO {
         this.windDir="西北";
         this.windLevel=3;
         this.conIconDay=weather.getConditionIdDay().toString();
-        this.conIconNight=weather.getConditionDay().toString();
+        this.conIconNight=weather.getConditionIdDay().toString();
         this.updatetime="今日15：00更新";
     }
 
