@@ -46,6 +46,8 @@ public class UserServiceImpl implements UserService {
         List<LiveIndexVO> liveIndexVOS=new ArrayList<>();
         for (Life li:lifeList) {
             LiveIndexVO liveIndexVO = new LiveIndexVO(li);
+            String livname=liveIndexVO.getName();
+            liveIndexVO.setName(livname.substring(0,livname.length()-2));
             liveIndexVOS.add(liveIndexVO);
         }
         return liveIndexVOS;
@@ -139,6 +141,26 @@ public class UserServiceImpl implements UserService {
             }
         }
         return temp;
+    }
+
+    @Override
+    public List<WeatherBriefVO> getTwoWeekBriefVO(City city) {
+        List<Weather> weathers = userDao.getWeather(city);
+        List<WeatherBriefVO> day15 = new ArrayList<>();
+        String[] weekOfDays = {"星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"};
+        for(int i=0;i<15;i++){
+            WeatherBriefVO weatherBriefVO = new WeatherBriefVO(weathers.get(i));
+            Date date = weathers.get(i).getDay();
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            int w = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+            if (w < 0){
+                w = 0;
+            }
+            weatherBriefVO.setPredictWeek(weekOfDays[w]);
+            day15.add(weatherBriefVO);
+        }
+        return day15;
     }
 
 }

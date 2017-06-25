@@ -29,31 +29,41 @@ import java.util.List;
 
 public class UserServiceTest {
 
-//    @Autowired
-//    private UserService userService;
-//
-//    @Test
-//    public void testWeatherDetails(){
-//        City city =new City();
-//        city.setCityName("西城区");
-//        city.setCityId(284610);
-//        WeatherDetailsVO weatherDetails=userService.getWeatherDetailsVO(city);
-//        Assert.assertEquals(22,weatherDetails.getTemp());
-//    }
-//    @Test
-//    public void testWeatherBriefVO(){
-//        City city =new City();
-//        city.setCityName("西城区");
-//        city.setCityId(284610);
-//        List<WeatherBriefVO> weatherBriefVOList= userService.getWeatherBriefVO(city);
-//        Assert.assertEquals(23,weatherBriefVOList.get(0).getTempDay());
-//    }
-//    @Test
-//    public void testLiveIndexVO(){
-//        City city =new City();
-//        city.setCityName("西城区");
-//        city.setCityId(284610);
-//        List<LiveIndexVO> liveIndexVOS=userService.getLiveIndexVOs(city);
-//        Assert.assertEquals(true,liveIndexVOS.get(0).getStatus().equals("控油"));
-//    }
+    @Autowired
+    private UserService userService;
+
+    @Test
+    public void testWeatherDetails(){
+        City city =new City();
+        city.setCityName("西城区");
+        city.setCityId(284610);
+        WeatherDetailsVO weatherDetails=userService.getWeatherDetailsVO(city);
+        Assert.assertEquals(22,weatherDetails.getTemp());
+    }
+    @Test
+    public void testWeatherBriefVO(){
+        City city =new City();
+        city.setCityName("西城区");
+        city.setCityId(284610);
+        List<WeatherBriefVO> weatherBriefVOList= userService.getWeatherBriefVO(city);
+        Assert.assertEquals(23,weatherBriefVOList.get(0).getTempDay());
+    }
+    @Test
+    public void testLiveIndexVO(){
+        City city =new City();
+        city.setCityName("西城区");
+        city.setCityId(284610);
+        List<LiveIndexVO> liveIndexVOS=userService.getLiveIndexVOs(city);
+        Assert.assertEquals(true,liveIndexVOS.get(0).getName().equals("化妆"));
+    }
+
+    @Test
+    public void testDay15(){
+        City city =new City();
+        city.setCityName("西城区");
+        city.setCityId(284610);
+        List<WeatherBriefVO> day15 = userService.getTwoWeekBriefVO(city);
+        Assert.assertEquals(true,day15.get(3).getPredictWeek().equals("星期日"));
+//        Assert.assertEquals(30,day15.get(3).getTempDay());
+    }
 }

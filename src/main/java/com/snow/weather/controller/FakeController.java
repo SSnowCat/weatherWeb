@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +51,6 @@ public class FakeController {
             }
             data = data + "{\"Ftemp\":"+ list.get(i).getTemp() +",\"Fpredict_hour\":"+ list.get(i).getHour() +",\"wind_level\":2}," ;
         }
-
         //String data = "[{\"Ftemp\":26,\"Fpredict_hour\":12,\"wind_level\":2},{\"Ftemp\":27,\"Fpredict_hour\":13,\"wind_level\":2},{\"Ftemp\":26,\"Fpredict_hour\":23,\"wind_level\":2},{\"Ftemp\":27,\"Fpredict_hour\":0,\"wind_level\":2}]";
         return data;
     }
@@ -80,14 +78,14 @@ public class FakeController {
     public String geolocate(@PathVariable String lon, @PathVariable String lat) {
         GetLatAndLngByBaidu getLatAndLngByBaidu = new GetLatAndLngByBaidu();
         //getLatAndLngByBaidu.getLocateToCityname(lon,lat);
-        locateCity = getLatAndLngByBaidu.getLocateToCityname(lon,lat);
-        return "/weather/"+locateCity;
+        locateCity = "/weather/"+getLatAndLngByBaidu.getLocateToCityname(lon,lat);
+        return locateCity;
     }
 
     @GetMapping(value = "/defaultlocate", produces = "text/html;charset=utf-8")
     @ResponseBody
     public String defaultLocate() {
-        String data = "/weather/北京";
+        String data = "/weather/"+locateCity;
         return data;
     }
 
@@ -97,8 +95,9 @@ public class FakeController {
         cityVO.setCounname(city.getCunName());
         cityVO.setPname(city.getCityName());
         cityVO.setName(city.getDistrictName());
+
         session.setAttribute("city", cityVO);
-    //获取天气实况
+
         WeatherDetailsVO details = userService.getWeatherDetailsVO(city);
         session.setAttribute("details", details);
 
@@ -112,24 +111,7 @@ public class FakeController {
 
         session.setAttribute("liveIndex",liveIndex);
 
-        List<WeatherBriefVO> day15 = new ArrayList<>();
-        for (int i=0;i<15;i++) {
-            WeatherBriefVO weatherBriefVO = new WeatherBriefVO();
-            weatherBriefVO.setPredictDay("后天");
-            weatherBriefVO.setConditionDay("小雨");
-            weatherBriefVO.setConditionNight("多云");
-            weatherBriefVO.setConIconDay("5");
-            weatherBriefVO.setConIconNight("5");
-            weatherBriefVO.setTempDay(32);
-            weatherBriefVO.setTempNight(21);
-            weatherBriefVO.setWindDir("东南风");
-            weatherBriefVO.setWindLevel(3);
-            weatherBriefVO.setAqiLevel(2);
-            weatherBriefVO.setAqiStr("76 良");
-            weatherBriefVO.setAqiIcon("2");
-            day15.add(weatherBriefVO);
-        }
-
+        List<WeatherBriefVO> day15 = userService.getTwoWeekBriefVO(city);
         session.setAttribute("day15", day15);
     }
 

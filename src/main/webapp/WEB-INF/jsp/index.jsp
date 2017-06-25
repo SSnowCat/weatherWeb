@@ -38,7 +38,7 @@
                 <em>${city.name}， ${city.pname}， ${city.counname}</em>
                 <strong id="locate"></strong>
                 <b><!--icon--></b>
-                <input type="text" placeholder="输入你要查找的城市">
+                <input type="text" name="cityname" id="cityname" placeholder="输入你要查找的城市">
                 <i></i>
             </div>
         </div>
@@ -128,7 +128,7 @@
                     <ul class="clearfix" style="width: 1120px; margin-left: 0px;">
                     <c:forEach items="${day15}" var="day">
                         <li>
-                            <span class="week">${day.predictDay}</span>
+                            <span class="week">${day.predictWeek}</span>
                             <span class="wea" style="font-size: 12px;">${day.conditionDay}</span>
                             <span class="weai">
                                 <img src="img/w${day.conIconDay}.png" alt="${day.conditionDay}">
@@ -242,6 +242,7 @@
 <script src="js/index.charts.js"></script>
 <script src="js/index.js"></script>
 <script src="js/forecast.js"></script>
+
 
 <div class="foot_box clearfix">
     <div class="foot clearfix">

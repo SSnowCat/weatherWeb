@@ -107,3 +107,4 @@ function showDay15() {
     $('#brief_future').hide();
     $('#detail_future').show();
 }
+
