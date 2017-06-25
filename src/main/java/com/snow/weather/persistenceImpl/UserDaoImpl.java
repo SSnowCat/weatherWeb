@@ -61,6 +61,16 @@ public class UserDaoImpl implements UserDao{
                 .getResultList();
     }
 
+    @Override
+    public boolean searchCity(String cityName) {
+
+        String hql = "select count(*) from City as o where o.districtName=?";
+
+        Long count = (Long) sessionFactory.getCurrentSession().createQuery(hql).setParameter(0,cityName)
+                .uniqueResult();
+        return count>0?true:false;
+    }
+
 
     @Override
     public City getCity(String cityName) {

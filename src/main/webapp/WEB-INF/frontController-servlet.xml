@@ -69,14 +69,14 @@
 
 	<bean id="myCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="jobDetail" ref="firstComplexJobDetail"/>
-		<property name="cronExpression" value="0/5 * * * * ?"/>
+		<property name="cronExpression" value="0 0 2 * * ?"/>
 		<property name="Priority" value="5"/>
 	</bean>
 
 	<bean id="mySecondCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="jobDetail" ref="secondComplexJobDetail"/>
 		<!--<property name="cronExpression" value="59 59 23 L * ?"/>-->
-		<property name="cronExpression" value="0/5 * * * * ?"/>
+		<property name="cronExpression" value="0 0 2 * * ?"/>
 		<property name="Priority" value="2"/>
 	</bean>
 

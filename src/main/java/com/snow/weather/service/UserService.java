@@ -19,6 +19,8 @@ import java.util.List;
 
 public interface UserService {
 
+    boolean searchCity(String cityName);
+
     City getCity(String cityName);
 
     CityVO getCityVO(City city);

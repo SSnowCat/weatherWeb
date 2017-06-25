@@ -15,4 +15,5 @@ public interface UserDao {
     List<Life> getLife(City city);
     List<Temp> getTemp(City city);
     List<Weather> getWeather(City city);
+    boolean searchCity(String cityName);
 }

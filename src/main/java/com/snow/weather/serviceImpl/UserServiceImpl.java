@@ -31,6 +31,10 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
+    public boolean searchCity(String cityName) {
+        return userDao.searchCity(cityName);
+    }
+    @Override
     public City getCity(String cityName) {
         return userDao.getCity(cityName);
     }

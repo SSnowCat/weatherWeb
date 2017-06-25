@@ -4,6 +4,7 @@ import com.snow.weather.domain.City;
 import com.snow.weather.domain.CitySearch;
 import com.snow.weather.domain.Temp;
 import com.snow.weather.domain.Weather;
+import com.snow.weather.service.DataService;
 import com.snow.weather.service.UserService;
 import com.snow.weather.util.AnalyseJSON;
 import com.snow.weather.util.GetLatAndLngByBaidu;
@@ -32,6 +33,8 @@ public class FakeController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private DataService dataService;
 
     @GetMapping("/index")
     public String toIndex(HttpSession session) {
@@ -70,9 +73,33 @@ public class FakeController {
 
     @GetMapping("/weather/{name}")
     public String getWeather(@PathVariable String name, HttpSession session) {
-        locateCity = name;
-        makeFakeData(session);
-        return "redirect: /index";
+        System.out.println(name);
+//        GetLatAndLngByBaidu getLatAndLngByBaidu = new GetLatAndLngByBaidu();
+//        String[] o = getLatAndLngByBaidu.getCoordinate(name);
+//        if(o == null){
+//            session.setAttribute("hint","不存在改地址");
+//        }else {
+//            String inputCity = getLatAndLngByBaidu.getLocateToCityname(o[0], o[1]);
+//            System.out.println(inputCity);
+            if (userService.searchCity(name)) {
+                //System.out.println("true");
+                locateCity = name;
+                //makeFakeData(httpSession);
+            }
+            if (!userService.searchCity(name)) {
+                //System.out.println("false");
+                dataService.saveCity(name);
+                dataService.saveLife(name);
+                dataService.saveTemp(name);
+                dataService.saveWeather(name);
+                locateCity = name;
+                // makeFakeData(httpSession);
+            }
+            //System.out.println("jump");
+
+       // }
+       return "redirect:/index";
+
     }
 
     @GetMapping(value = "/geolocate/{lon}/{lat}", produces = "text/html;charset=utf-8")
