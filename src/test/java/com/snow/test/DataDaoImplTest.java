@@ -23,11 +23,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @Rollback(false)
 public class DataDaoImplTest {
-    private static final String LAT = "39.91488908";
-    private static final String LON = "116.40387397";
-    private static City city;
-    @Autowired
-    private DataDao dataDao;
+//    private static final String LAT = "39.91488908";
+//    private static final String LON = "116.40387397";
+//    private static City city;
+//    @Autowired
+//    private DataDao dataDao;
 //
 //    @BeforeClass
 //    public static void init(){
@@ -45,10 +45,10 @@ public class DataDaoImplTest {
 //        dataDao.saveLife(city.getCityName());
 //    }
 //
-    @Test
-    public void testSaveTemp(){
-        dataDao.saveTemp("北京");
-    }
+//    @Test
+//    public void testSaveTemp(){
+//        dataDao.saveTemp(city.getCityName());
+//    }
 //
 //    @Test
 //    public void testSaveWeather(){
