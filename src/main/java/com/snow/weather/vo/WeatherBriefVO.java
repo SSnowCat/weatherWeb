@@ -1,11 +1,13 @@
 package com.snow.weather.vo;
 
+import com.snow.weather.domain.Weather;
+
 /**
  * Created by 李德阳 on 2017/6/22.
  */
 public class WeatherBriefVO {
     private String conditionDay;//白天天气状况
-    private String conditionIdNight;//晚上天气状况
+    private String conditionNight;//晚上天气状况
     private String predictDay;//预报时间
     private String predictDate;//预报日期
     private String predictWeek;//预报星期
@@ -20,16 +22,41 @@ public class WeatherBriefVO {
     private String conIconNight;//晚上天气状况图标
     private String updatetime;//发布时间
 
-    public String getConditionDay() {
-        return conditionDay;
-    }
 
-    public String getConditionIdNight() {
-        return conditionIdNight;
+    public WeatherBriefVO(Weather weather){
+
+        this.conditionDay=weather.getConditionDay();
+        this.conditionNight=weather.getConditionDay();
+        this.predictDay="今天";
+        this.predictDate=weather.getDay().toString();
+        this.predictWeek="星期日";
+        this.tempDay=weather.getTempDay();
+        this.tempNight=weather.getTempNight();
+        this.aqiLevel=2;
+        this.aqiStr="72 良";
+        this.aqiIcon="2";
+        this.windDir="西北";
+        this.windLevel=3;
+        this.conIconDay=weather.getConditionIdDay().toString();
+        this.conIconNight=weather.getConditionIdDay().toString();
+        this.updatetime="今日15：00更新";
     }
 
     public String getPredictDay() {
         return predictDay;
+    }
+
+    public void setPredictDay(String predictDay) {
+        this.predictDay = predictDay;
+    }
+    public WeatherBriefVO(){}
+
+    public String getConditionDay() {
+        return conditionDay;
+    }
+
+    public String getConditionNight() {
+        return conditionNight;
     }
 
     public String getPredictDate() {
@@ -84,12 +111,8 @@ public class WeatherBriefVO {
         this.conditionDay = conditionDay;
     }
 
-    public void setConditionIdNight(String conditionIdNight) {
-        this.conditionIdNight = conditionIdNight;
-    }
-
-    public void setPredictDay(String predictDay) {
-        this.predictDay = predictDay;
+    public void setConditionNight(String conditionNight) {
+        this.conditionNight = conditionNight;
     }
 
     public void setPredictDate(String predictDate) {

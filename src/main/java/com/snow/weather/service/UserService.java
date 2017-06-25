@@ -8,7 +8,10 @@ import  com.snow.weather.domain.City;
 import com.snow.weather.domain.Life;
 import com.snow.weather.domain.Temp;
 import com.snow.weather.domain.Weather;
-import com.snow.weather.vo.WeatherDetails;
+import com.snow.weather.vo.CityVO;
+import com.snow.weather.vo.LiveIndexVO;
+import com.snow.weather.vo.WeatherBriefVO;
+import com.snow.weather.vo.WeatherDetailsVO;
 
 import java.lang.management.ThreadMXBean;
 import java.util.Date;
@@ -16,8 +19,16 @@ import java.util.List;
 
 public interface UserService {
 
+    City getCity(String cityName);
 
-    WeatherDetails getWeatherDetails(City city);//天气实况
+    CityVO getCityVO(City city);
+
+    List<LiveIndexVO> getLiveIndexVOs(City city);
+
+    List<WeatherBriefVO> getWeatherBriefVO(City city);//简约天气
+
+    WeatherDetailsVO getWeatherDetailsVO(City city);//天气实况
+
     List<Temp> getTemp(City city);//获取24小时温度
 
     List<Weather> getTwoWeeksWeather(City city);//获取两周天气
@@ -27,5 +38,7 @@ public interface UserService {
     Weather getCurrentWeather(City city);
 
     Temp getCurrentTemp(City city);
+
+    List<WeatherBriefVO> getTwoWeekBriefVO(City city);
 
 }

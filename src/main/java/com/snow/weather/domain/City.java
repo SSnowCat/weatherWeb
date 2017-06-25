@@ -13,10 +13,10 @@ import java.io.Serializable;
 public class City implements Serializable{
 
     @Id
-    private int cityId;
-    private String cunName;
-    private String cityName;
-    private String districtName;
+    private int cityId;//城市id
+    private String cunName;//国家名
+    private String cityName;//城市名
+    private String districtName;//区名
 
     public int getCityId() {
         return cityId;

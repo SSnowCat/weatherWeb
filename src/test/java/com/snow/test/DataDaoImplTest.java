@@ -28,31 +28,31 @@ public class DataDaoImplTest {
     private static City city;
     @Autowired
     private DataDao dataDao;
-
-    @BeforeClass
-    public static void init(){
-        city = AnalyseJSON.getCity(GetJSON.getLifeJson(LAT,LON));
-    }
-
-    @Test
-    public void testSaveCity(){
-       dataDao.saveCity("北京");
-
-    }
-
-    @Test
-    public void testSaveLife(){
-        dataDao.saveLife(city.getCityName());
-    }
-
+//
+//    @BeforeClass
+//    public static void init(){
+//        city = AnalyseJSON.getCity(GetJSON.getLifeJson(LAT,LON));
+//    }
+//
+//    @Test
+//    public void testSaveCity(){
+//       dataDao.saveCity("北京");
+//
+//    }
+//
+//    @Test
+//    public void testSaveLife(){
+//        dataDao.saveLife(city.getCityName());
+//    }
+//
     @Test
     public void testSaveTemp(){
-        dataDao.saveTemp(city.getCityName());
+        dataDao.saveTemp("北京");
     }
-
-    @Test
-    public void testSaveWeather(){
-        dataDao.saveWeather(city.getCityName());
-    }
+//
+//    @Test
+//    public void testSaveWeather(){
+//        dataDao.saveWeather("北京");
+//    }
 
 }

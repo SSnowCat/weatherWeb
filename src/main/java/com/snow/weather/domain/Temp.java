@@ -15,8 +15,8 @@ public class Temp implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Date date;
-    private int hour;
-    private int temp;
+    private int hour;//时间
+    private int temp;//温度
     @ManyToOne
     @JoinColumn(name = "cityId")
     private City city;

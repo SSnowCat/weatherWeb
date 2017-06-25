@@ -14,11 +14,11 @@ public class Life implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Date day;
+    private Date day;//日期
     @Column(name = "descc")
-    private String desc;
-    private String name;
-    private String status;
+    private String desc;//建议
+    private String name;//xx指数
+    private String status;//状态
     @ManyToOne
     @JoinColumn(name="cityId")
     private City city;

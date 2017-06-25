@@ -87,6 +87,7 @@ public final class AnalyseJSON {
             Weather weather = new Weather();
             weather.setCity(getCity(weatherJson));
             weather.setConditionDay(jsonArray.getJSONObject(i).getString("conditionDay"));
+            weather.setConditionIdDay(Integer.parseInt(jsonArray.getJSONObject(i).getString("conditionIdDay")));
             weather.setDay(day);
             weather.setTempDay(Integer.parseInt(jsonArray.getJSONObject(i).getString("tempDay")));
             weather.setTempNight(Integer.parseInt(jsonArray.getJSONObject(i).getString("tempNight")));

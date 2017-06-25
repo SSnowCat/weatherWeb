@@ -46,7 +46,6 @@ function getPosition() {
 }
 
 $(function () {
-
     $("#locate").on("click", getPosition);
     var t = "";
     $(".search_default b").on("click", function () {
@@ -98,3 +97,14 @@ var showCity = function (e) {
             }
         })
 };
+
+function showDay3() {
+    $('#detail_future').hide();
+    $('#brief_future').show();
+}
+
+function showDay15() {
+    $('#brief_future').hide();
+    $('#detail_future').show();
+}
+
